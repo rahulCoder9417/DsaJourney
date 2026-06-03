@@ -1,0 +1,25 @@
+/**
+ * @param {number[]} landStartTime
+ * @param {number[]} landDuration
+ * @param {number[]} waterStartTime
+ * @param {number[]} waterDuration
+ * @return {number}
+ */
+var earliestFinishTime = function(lst, ldu, wst, wdu) {
+    let ans = Infinity, mln = Infinity, mnw = Infinity;
+
+        for (let i = 0; i < lst.length; i++)
+            mln = Math.min(mln, lst[i] + ldu[i]);
+
+        for (let i = 0; i < wst.length; i++)
+            ans = Math.min(ans, Math.max(mln, wst[i]) + wdu[i]);
+
+        for (let i = 0; i < wst.length; i++)
+            mnw = Math.min(mnw, wst[i] + wdu[i]);
+
+        for (let i = 0; i < lst.length; i++)
+            ans = Math.min(ans, Math.max(mnw, lst[i]) + ldu[i]);
+
+        return ans;
+    
+};
